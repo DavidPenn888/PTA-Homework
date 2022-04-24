@@ -1,41 +1,29 @@
-
 import java.util.Scanner;
-import java.text.DecimalFormat;
-
-interface IShape {
-    public abstract double getArea();
-
-    public abstract double getPerimeter();
-}
-
-/*你写的代码将嵌入到这里*/
-class RTriangle implements IShape {
-    private double a,b;
-    public RTriangle (double a,double b) {
-        this.a=a;this.b=b;
+class Student {
+    int id;
+    String name;
+    int age;
+    public Student(int id,     String name,     int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
     }
 
-    @Override
-    public double getArea() {
-        return a*b*0.5;
-    }
-
-    @Override
-    public double getPerimeter() {
-        return Math.sqrt(a*a+b*b)+a+b;
+    /* 请在这里填写答案 */
+    public boolean equals(Object s2) {
+        Student obj=(Student) s2;
+        if(this.id==obj.id)
+            return true;
+        else
+            return false;
     }
 }
-
-
 public class Main {
     public static void main(String[] args) {
-        DecimalFormat d = new DecimalFormat("#.####");
-        Scanner input = new Scanner(System.in);
-        double a = input.nextDouble();
-        double b = input.nextDouble();
-        IShape r = new RTriangle(a, b);
-        System.out.println(d.format(r.getArea()));
-        System.out.println(d.format(r.getPerimeter()));
-        input.close();
+        Scanner sc = new Scanner(System.in);
+        Student s1 = new Student(sc.nextInt(),sc.next(),sc.nextInt());
+        Student s2 = new Student(sc.nextInt(),sc.next(),sc.nextInt());
+        System.out.println(s1.equals(s2));
+        sc.close();
     }
 }

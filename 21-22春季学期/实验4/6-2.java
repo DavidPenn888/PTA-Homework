@@ -1,50 +1,41 @@
 
-import java.util.*;
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+interface IShape {
+    public abstract double getArea();
+
+    public abstract double getPerimeter();
+}
+
+/*你写的代码将嵌入到这里*/
+class RTriangle implements IShape {
+    private double a,b;
+    public RTriangle (double a,double b) {
+        this.a=a;this.b=b;
+    }
+
+    @Override
+    public double getArea() {
+        return a*b*0.5;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return Math.sqrt(a*a+b*b)+a+b;
+    }
+}
+
+
 public class Main {
-
     public static void main(String[] args) {
-        double s=0;
-        Scanner sc=new Scanner(System.in);
-        double r1,r2;
-        r1=sc.nextDouble();
-        r2=sc.nextDouble();
-        Circle c1=new Circle(r1);
-        Circle c2=new Circle(r2);
-        try{
-            s = c1.area();
-            System.out.println(s);
-            s = c2.area();
-            System.out.println(s);
-        }
-        catch (CircleException e){
-            e.print();
-        }
-    }
-}
-
-
-/* 请在这里填写答案 编写Circle 和CircleException类*/
-class Circle {
-    private double r;
-    public Circle (double r) {
-        this.r = r;
-    }
-    public double area() throws CircleException {
-        if(r<0) {
-            throw new CircleException(r);
-        }
-        return r*r*3.14;
-    }
-}
-
-
-class CircleException extends Throwable {
-    private double r;
-    public CircleException(double r) {
-        super();
-        this.r = r;
-    }
-    public void print() {
-        System.out.println("圆半径为"+ r +"不合理");
+        DecimalFormat d = new DecimalFormat("#.####");
+        Scanner input = new Scanner(System.in);
+        double a = input.nextDouble();
+        double b = input.nextDouble();
+        IShape r = new RTriangle(a, b);
+        System.out.println(d.format(r.getArea()));
+        System.out.println(d.format(r.getPerimeter()));
+        input.close();
     }
 }

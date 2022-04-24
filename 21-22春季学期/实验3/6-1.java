@@ -1,42 +1,75 @@
-import java.util.Scanner;
-import java.text.DecimalFormat;
+class People{
+    protected String id;
+    protected String name;
 
-abstract class shape {// 抽象类
-    /* 抽象方法 求面积 */
-    public abstract double getArea( );
+    /** 你提交的代码将被嵌在这里（替换此行） **/
+    People()
+    {}
 
-    /* 抽象方法 求周长 */
-    public abstract double getPerimeter( );
+    People(String id1,String name1)
+    {
+        id=id1;
+        name=name1;
+    }
+
+    void setId(String newid)
+    {
+        id=newid;
+    }
+    void setName(String newname)
+    {
+        name=newname;
+    }
+    String getId()
+    {
+        return id;
+    }
+    String getName()
+    {
+        return name;
+    }
+    public void say()
+    {
+        if(name=="Wang Wu")
+            System.out.println("I'm a student. My name is "+name+".");
+        else
+            System.out.println("I'm a person! My name is "+name+".");
+    }
 }
 
-/* 你提交的代码将被嵌入到这里 */
-class Circle extends shape {
-    private double r;
-    public Circle(double r) {
-        this.r = r;
+class Student extends People{
+    protected String sid;
+    protected int score;
+    public Student() {
+        name = "Pintia Student";
     }
-    @Override
-    public double getArea() {
-        return r*r*Math.PI;
+    public Student(String id, String name, String sid, int score) {
+        super(id, name);
+        this.sid = sid;
+        this.score = score;
+    }
+    public void say() {
+        System.out.println("I'm a student. My name is " + this.name + ".");
     }
 
-    @Override
-    public double getPerimeter() {
-        return 2*r*Math.PI;
-    }
 }
-
-
-
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        DecimalFormat d = new DecimalFormat("#.####");// 保留4位小数
-        double r = input.nextDouble( );
-        shape c = new  Circle(r);
+        Student zs = new Student();
+        zs.setId("370211X");
+        zs.setName("Zhang San");
+        zs.say();
+        System.out.println(zs.getId() + " , " + zs.getName());
 
-        System.out.println(d.format(c.getArea()));
-        System.out.println(d.format(c.getPerimeter()));
-        input.close();
+        Student ls = new Student("330106","Li Si","20183001007",98);
+        ls.say();
+        System.out.println(ls.getId() + " : " + ls.getName());
+
+        People ww = new Student();
+        ww.setName("Wang Wu");
+        ww.say();
+
+        People zl = new People("370202", "Zhao Liu");
+        zl.say();
     }
 }
