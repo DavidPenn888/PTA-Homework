@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+/*这里放置你的答案，即PrintTask类的代码*/
+class PrintTask implements Runnable {
+    int num;
+    public PrintTask(int num) {
+        this.num = num;
+    }
+    public void run() {
+        for(int i=0 ;i<num ;i++ ) {
+            System.out.println(i);
+        }
+        System.out.println(Thread.currentThread().getName());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        PrintTask task = new PrintTask(Integer.parseInt(sc.next()));
+        Thread t1 = new Thread(task);
+        t1.start();
+        sc.close();
+        String str = new String();
+    }
+}
